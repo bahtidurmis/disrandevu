@@ -4,7 +4,6 @@
     "builder": "nixpacks"
   },
   "deploy": {
-    "startCommand": "npm start",
-    "restartPolicyType": "on-failure"
+    "startCommand": "npm start"
   }
 } 
