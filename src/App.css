@@ -36,3 +36,118 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  background: #f4f6fb;
+  color: #222;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.card, .shadow {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(30,41,59,0.08), 0 1.5px 4px 0 rgba(30,41,59,0.04);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+input, select, textarea {
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #2563eb;
+}
+
+.btn, button, .btn-primary, .btn-danger, .btn-secondary {
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary, .btn.btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+.btn-primary:hover, .btn.btn-primary:hover {
+  background: #1d4ed8;
+}
+.btn-danger, .btn.btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+.btn-danger:hover, .btn.btn-danger:hover {
+  background: #b91c1c;
+}
+.btn-secondary, .btn.btn-secondary {
+  background: #64748b;
+  color: #fff;
+}
+.btn-secondary:hover, .btn.btn-secondary:hover {
+  background: #475569;
+}
+
+.table {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.06);
+  overflow: hidden;
+}
+.table th, .table td {
+  padding: 14px 12px;
+  text-align: left;
+}
+.table th {
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 600;
+}
+.table-striped tbody tr:nth-child(odd) {
+  background: #f8fafc;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+.alert-success {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.alert-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e5e7eb;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
