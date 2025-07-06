@@ -39,7 +39,7 @@ const Doctors: React.FC = () => {
 
   useEffect(() => {
     if (selectedDoctor && date) {
-      fetch(`http://localhost:5000/api/appointments/doctor/${selectedDoctor._id}?date=${date}`)
+      fetch(`/api/appointments/doctor/${selectedDoctor._id}?date=${date}`)
         .then(r => r.json())
         .then(data => setBusyTimes(data.map((a: any) => a.time)));
     } else {

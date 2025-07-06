@@ -24,7 +24,7 @@ const Admin: React.FC = () => {
   const [editTime, setEditTime] = useState('');
   const [editBusyTimes, setEditBusyTimes] = useState<string[]>([]);
   const user = localStorage.getItem('user');
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = '/api';
 
   useEffect(() => {
     doctorService.getDoctors().then(setDoctors);

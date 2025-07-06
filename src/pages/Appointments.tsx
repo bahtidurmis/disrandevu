@@ -14,7 +14,7 @@ const Appointments: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const user = localStorage.getItem('user');
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = '/api';
 
   useEffect(() => {
     if (!user) return;
