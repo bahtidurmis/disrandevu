@@ -1,5 +1,7 @@
 import connectDB from '../../lib/mongodb';
 import Appointment from '../../models/Appointment';
+import User from '../../models/User';
+import Doctor from '../../models/Doctor';
 
 export default async function handler(req, res) {
   const { userId } = req.query;
@@ -9,18 +11,30 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET') {
       if (userId === 'all') {
-        // Admin: Get all appointments
-        const appointments = await Appointment.find()
-          .populate('doctorId')
-          .populate('userId');
-        return res.status(200).json(appointments);
+        // Admin: Get all appointments with manual populate
+        const appointments = await Appointment.find();
+        const users = await User.find();
+        const doctors = await Doctor.find();
+        
+        const appointmentsWithDetails = appointments.map(app => ({
+          ...app.toObject(),
+          userId: users.find(u => u._id.toString() === app.userId.toString()),
+          doctorId: doctors.find(d => d._id.toString() === app.doctorId.toString())
+        }));
+        
+        return res.status(200).json(appointmentsWithDetails);
       }
       
-      // Get user's appointments
-      const appointments = await Appointment.find({ userId })
-        .populate('doctorId')
-        .populate('userId');
-      res.status(200).json(appointments);
+      // Get user's appointments with manual populate
+      const appointments = await Appointment.find({ userId });
+      const doctors = await Doctor.find();
+      
+      const appointmentsWithDetails = appointments.map(app => ({
+        ...app.toObject(),
+        doctorId: doctors.find(d => d._id.toString() === app.doctorId.toString())
+      }));
+      
+      res.status(200).json(appointmentsWithDetails);
     }
     else if (req.method === 'DELETE') {
       // Delete appointment
