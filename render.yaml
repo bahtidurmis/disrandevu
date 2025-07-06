@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: disrandevu-frontend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://disrandevu-backend.onrender.com/api
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: disrandevu-backend
+    env: node
+    plan: free
+    rootDir: ./server
+    buildCommand: npm install --production
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: mongodb://localhost:27017/dentist-appointment
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=400 

@@ -14,10 +14,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// MongoDB Bağlantısı
+// MongoDB Bağlantısı (RAM Optimized)
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dentist-appointment', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  maxPoolSize: 5,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  bufferMaxEntries: 0
 })
 .then(() => console.log('MongoDB bağlantısı başarılı'))
 .catch(err => console.error('MongoDB bağlantı hatası:', err));
@@ -259,4 +263,17 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {
   await ensureAdminUser();
   console.log(`Server ${PORT} portunda çalışıyor`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, closing HTTP server...');
+  mongoose.connection.close();
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, closing HTTP server...');
+  mongoose.connection.close();
+  process.exit(0);
 }); 
