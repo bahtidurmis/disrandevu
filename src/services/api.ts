@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -24,6 +24,11 @@ export const authService = {
     phone: string;
   }) => {
     const response = await api.post('/register', userData);
+    return response.data;
+  },
+
+  checkEmail: async (email: string) => {
+    const response = await api.post('/check-email', { email });
     return response.data;
   },
 };
